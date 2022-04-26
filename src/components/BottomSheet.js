@@ -3,14 +3,14 @@ import {Animated, Dimensions, StyleSheet} from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler"
 const BottomSheet = (props) => {
   const { show, onDismiss, children } = props
-  const bottomSheetHeight = Dimensions.get("window").height * 0.59;
+  const bottomSheetHeight = Dimensions.get("screen").height * 0.48;
   const [open, setOpen] = useState(show);
   const bottom = useRef(new Animated.Value(-bottomSheetHeight)).current;
   const onGesture = (e) => {
       bottom.setValue(-e.nativeEvent.translationY);
   };
   const onGestureEnd = (event) => {
-    if (event.nativeEvent.translationY > bottomSheetHeight/2.5) {
+    if (event.nativeEvent.translationY > bottomSheetHeight/2) {
       onDismiss();
     } 
     else {

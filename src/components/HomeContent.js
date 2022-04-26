@@ -7,14 +7,14 @@ import data from "../localdata/uidata"
 const Content = ({navigation}) => {
     const [text,setText] = useState('')
     return(
-        <View>
+        <View style={{marginBottom:35}}>
             <View style={{borderRadius:10,backgroundColor:'#222222',padding:15,marginVertical:10,marginHorizontal:10}}>
                 <View style={{flexDirection:'row',marginBottom:10}}>
                 <FontAwesome name={'rupee'} size={16} style={{color:'white',paddingVertical:9,paddingHorizontal:5}} />
                 <Text style={{fontSize:16,color:'white',padding:5,fontWeight:'700'}}>Payment Link</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>
-                <TextInput style={{backgroundColor:'#444444',borderWidth:1,borderRadius:8,width:'54%',color:'white',paddingLeft:10,letterSpacing:1,marginRight:10,fontSize:20,textAlign:'center'}} keyboardType={'number-pad'} placeholder={''} placeholderTextColor={'white'} onChangeText={(e)=> setText(e)} />
+                <TextInput style={{backgroundColor:'#444444',borderWidth:1,borderRadius:8,width:'54%',color:'white',paddingLeft:10,letterSpacing:1,marginRight:10,fontSize:20,textAlign:'center'}} returnKeyType={'send'} keyboardType={'number-pad'} placeholder={''} placeholderTextColor={'white'} onChangeText={(e)=> setText(e)} onSubmitEditing={()=> navigation.navigate('ModalScreen',{amount:text})} />
                 <TouchableOpacity style={{backgroundColor:'#ff7744',alignItems:'center',justifyContent:'center',marginVertical:7,paddingVertical:8,paddingHorizontal:13,borderRadius:20}} onPress={()=> {if(text !== ''){navigation.navigate('ModalScreen',{amount: text})}}}><Text style={{color:'white',textAlign:'center',fontWeight:'600',fontSize:12}}>GENERATE & SHARE</Text></TouchableOpacity>
                 </View>
             </View>

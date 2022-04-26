@@ -1,28 +1,25 @@
-import React,{useState,useEffect} from "react"
-import {View, Text, StatusBar,ScrollView,Image,TextInput,TouchableOpacity,Dimensions,FlatList,SafeAreaView,Button} from 'react-native'
+import React,{useState,useEffect,useContext} from "react"
+import {View, Text, StatusBar,ScrollView,Image,TextInput,TouchableOpacity,Dimensions,FlatList,SafeAreaView,Button,LogBox,InteractionManager} from 'react-native'
 import FlatScrollView from "../components/FlatScrollView"
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Entypo from 'react-native-vector-icons/Entypo'
-import data from "../localdata/uidata"
 import CardNav from "../navigation/cardIndex"
-import AnimatedLottieView from 'lottie-react-native'
 import Header from "../components/HeaderFreeCharge"
 import Content from "../components/HomeContent"
+import Loader from '../components/Loader'
+import {Load} from '../context/LoadingContext'
 
+
+let i = 1;
 const FreeChargeHome = ({navigation}) => {
     const [open,setOpen] = useState(true)
-    const [text,setText] = useState('')
-    const [load,setLoad] = useState(true)
+    LogBox.ignoreAllLogs()
+    const {setLoad} = useContext(Load)
     useEffect(()=> {
-        setTimeout(()=> setLoad(false),1000)
+        setTimeout(()=> setLoad(false),5000)
     },[])
     return(
         <>
-        {
-            load ?
-            <AnimatedLottieView style={{backgroundColor:'transparent'}} source={require('../loader.json')} autoPlay loop />
-            :
-        <FlatScrollView style={{backgroundColor:'#eff1f6',flex:1,marginBottom:40}} showsVerticalScrollIndicator={false}>
+        <Loader />
+        <FlatScrollView style={{backgroundColor:'#eff1f6',flex:1}} showsVerticalScrollIndicator={false}>
             <StatusBar backgroundColor={'#eff1f6'} barStyle={'dark-content'} />
             <Header />
             <View style={{flex:1,backgroundColor:'white',height:open ? 400: 355,marginHorizontal:10,borderRadius:10,marginTop:20,marginBottom:5}}>
@@ -41,7 +38,6 @@ const FreeChargeHome = ({navigation}) => {
             </View>
             <Content navigation = {navigation} />
         </FlatScrollView>
-        }
     </>
     )
 }
