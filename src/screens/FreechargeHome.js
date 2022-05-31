@@ -67,7 +67,7 @@ const FreeChargeHome = ({navigation}) => {
                 </View>
                 }
             </View>
-            <Cibil value={900} />
+            <Cibil value={800} />
             <Content navigation = {navigation} />
         </FlatScrollView>
     </>

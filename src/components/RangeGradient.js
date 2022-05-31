@@ -5,21 +5,21 @@ import LinearGradient from 'react-native-linear-gradient'
 const Range = (props) => {
     const [color, setColor] = useState(['hsl(0,100%,50%)','hsl(1,100%,50%)'])
     const {value} = props
-    const num = Math.abs(300-value)/6
-    const thumb = `hsl(${num},100%,47%)`
+    const Width = Math.abs(300-value)/6
+    const thumbSize = `hsl(${Width},100%,47%)`
     const slide = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
     Animated.timing(slide, {
-      toValue: num,
+      toValue: Width,
       duration: 1000,
       delay:100,
       useNativeDriver:false
     }).start();
   };
     function slider(){
-            setColor(['hsl(0,100%,50%)',`hsl(${num*0.6},100%,50%)`,`hsl(${num*1.2},100%,50%)`])
+            setColor(['hsl(0,100%,50%)',`hsl(${Width*0.6},100%,50%)`,`hsl(${Width*1.2},100%,50%)`])
             fadeIn()
     }
     useEffect(()=> {
@@ -38,7 +38,7 @@ const Range = (props) => {
               outputRange:['0%','25%','50%','75%','100%']
             })}}>
             <LinearGradient colors={color} style={styles.lineargradient} useAngle={true} angle={90}>
-              <View style={[styles.linearview,{borderColor:`hsl(${num+10},90%,40%)`,backgroundColor:thumb}]} />
+              <View style={[styles.linearview,{borderColor:`hsl(${Width+10},90%,40%)`,backgroundColor:thumbSize}]} />
               </LinearGradient>
             </Animated.View>
             </View>
