@@ -7,11 +7,11 @@ const Range = (props) => {
     const {value} = props
     const num = Math.abs(300-value)/6
     const thumb = `hsl(${num},100%,47%)`
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const slide = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(fadeAnim, {
+    Animated.timing(slide, {
       toValue: num,
       duration: 1000,
       delay:100,
@@ -33,7 +33,7 @@ const Range = (props) => {
             <View style={styles.container}>
             <Text style={styles.text}>300</Text>
             <View style={styles.subContainer}>
-            <Animated.View style={{width:fadeAnim.interpolate({
+            <Animated.View style={{width:slide.interpolate({
               inputRange: [0,25,50,75,100],
               outputRange:['0%','25%','50%','75%','100%']
             })}}>
