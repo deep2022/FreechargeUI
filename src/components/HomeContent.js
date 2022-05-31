@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from "react"
-import {View, Text, StatusBar,ScrollView,Image,TextInput,TouchableOpacity,Dimensions,FlatList,SafeAreaView,Button} from 'react-native'
+import React,{useState} from "react"
+import {View, Text,Image,TextInput,TouchableOpacity,Dimensions,FlatList} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Entypo from 'react-native-vector-icons/Entypo'
 import data from "../localdata/uidata"
@@ -70,4 +70,6 @@ const Content = ({navigation}) => {
         </View>
     )
 }
+
+Content.whyDidYouRender = true
 export default Content

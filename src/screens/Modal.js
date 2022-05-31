@@ -1,27 +1,22 @@
-import React,{useState,useEffect,useRef,useContext} from 'react'
-import {Animated,View,Text,TextInput,TouchableOpacity,Image,ScrollView,Dimensions} from 'react-native'
+import React,{useState,useEffect,useRef} from 'react'
+import {Animated,View,Text,TextInput,TouchableOpacity,Image,Dimensions} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import BottomSheet from "../components/BottomSheet";
-import { Load } from '../context/LoadingContext';
-import Loader from '../components/Loader';
 
 const Modal = ({route,navigation}) => {
     const [show,setShow] = useState(true)
-    const {setLoad} = useContext(Load)
     const {amount} = route.params
-    console.log(amount)
-    const closebtn = useRef(new Animated.Value(0)).current
-    console.log(closebtn,'closebtn')
+    const closebtn = useRef(new Animated.Value((Dimensions.get("screen").height * 0.53))).current
     useEffect(()=> {
         if(!show){
             Animated.timing(closebtn, {
+                toValue: -closebtn,
                 delay: 10,
-                useNativeDriver: true,
+                useNativeDriver: false,
               }).start(()=> navigation.navigate('FreeHome'));
         }
     },[show])
     return(
-        <>
         <View style={{flex:1}}>
             <BottomSheet
           show={show}
@@ -55,8 +50,6 @@ const Modal = ({route,navigation}) => {
             </Animated.View>
         </BottomSheet>
         </View>
-        </>
     )
 }
-
 export default Modal

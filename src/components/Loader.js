@@ -4,7 +4,9 @@ import { Load } from '../context/LoadingContext';
 
 const Loader = () => {
     const {load} = useContext(Load)
-    console.log('loader',load)
+    const call = () => {
+        console.log('called')
+    }
     return(
             <>
             {

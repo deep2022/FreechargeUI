@@ -1,24 +1,55 @@
-import React,{useState,useEffect,useContext} from "react"
-import {View, Text, StatusBar,ScrollView,Image,TextInput,TouchableOpacity,Dimensions,FlatList,SafeAreaView,Button,LogBox,InteractionManager} from 'react-native'
+import React,{useState} from "react"
+import {View, Text, StatusBar,TouchableOpacity,TextInput,Image} from 'react-native'
+import SmsAndroid from 'react-native-get-sms-android';
 import FlatScrollView from "../components/FlatScrollView"
-import CardNav from "../navigation/cardIndex"
 import Header from "../components/HeaderFreeCharge"
-import Content from "../components/HomeContent"
-import Loader from '../components/Loader'
-import {Load} from '../context/LoadingContext'
-
-
-let i = 1;
+import Content from '../components/HomeContent'
+import CardNav from '../navigation/cardIndex'
+import Cibil from "../components/Cibil";
+import Icon from 'react-native-vector-icons/Ionicons'
+import { Button } from "react-native-paper";
+// const Content = React.lazy(()=> import('../components/HomeContent'))
+// const CardNav = React.lazy(()=> import('../navigation/cardIndex'))
+const RNFS = require('react-native-fs')
+var filter = {
+    box: 'inbox',
+    read: 1, // 0 for unread SMS, 1 for SMS already read
+    /** the next 2 filters can be used for pagination **/
+    indexFrom: 0, // start from index 0
+    maxCount: 10, // count of SMS to return each time
+  };
+  
+  SmsAndroid.list(
+    JSON.stringify(filter),
+    (fail) => {
+      console.log('Failed with this error: ' + fail);
+    },
+    (count, smsList) => {
+    //   console.log('Count: ', count);
+    //   console.log('List: ', smsList);
+    //   var arr = JSON.parse(smsList);
+  
+    //   arr.forEach(function(object) {
+    //     console.log('Object: ' + JSON.stringify(object));
+    //     console.log('-->' + object.date);
+    //     console.log('-->' + object.body);
+    //   });
+    },
+  );
+  
+  SmsAndroid.autoSend(
+    '+919643724969',
+    'This is a test message',
+    (fail) => {
+      console.log('Failed with this error: ' + fail);
+    },
+    (success) => {
+    },
+  );
 const FreeChargeHome = ({navigation}) => {
     const [open,setOpen] = useState(true)
-    LogBox.ignoreAllLogs()
-    const {setLoad} = useContext(Load)
-    useEffect(()=> {
-        setTimeout(()=> setLoad(false),5000)
-    },[])
     return(
         <>
-        <Loader />
         <FlatScrollView style={{backgroundColor:'#eff1f6',flex:1}} showsVerticalScrollIndicator={false}>
             <StatusBar backgroundColor={'#eff1f6'} barStyle={'dark-content'} />
             <Header />
@@ -36,10 +67,11 @@ const FreeChargeHome = ({navigation}) => {
                 </View>
                 }
             </View>
+            <Cibil value={900} />
             <Content navigation = {navigation} />
         </FlatScrollView>
     </>
     )
 }
-
+FreeChargeHome.whyDidYouRender = false
 export default FreeChargeHome

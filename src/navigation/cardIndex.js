@@ -100,5 +100,5 @@ const CardNav = () => {
                 </Tab.Navigator>
     )
 }
-
+CardNav.whyDidYouRender = false
 export default CardNav

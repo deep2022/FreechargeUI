@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "619456811481",
+    "project_id": "fcapp-53083",
+    "storage_bucket": "fcapp-53083.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619456811481:android:fd58d19c9f741b229a09c8",
+        "android_client_info": {
+          "package_name": "com.freecharge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619456811481-vo2gcd16mlhjoprg8b8tr3m2gvajjv0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr93XjtrM5cx3GZ65Q36WApEIBRcvo-tE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619456811481-vo2gcd16mlhjoprg8b8tr3m2gvajjv0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
